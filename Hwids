@@ -1,4 +1,3 @@
-functions GetWhiteList()
 local whiteList = {
     695197442,
     1866177991,
@@ -122,5 +121,3 @@ local whiteList = {
     "D0901A7D-C987-4351-95A7-5BD7794E7E91"
 }
 return whiteList()
-end
-return GetWhiteList()
