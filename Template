@@ -1,45 +1,36 @@
 function GetPlayer()
     local plr = game:GetService("Players").LocalPlayer
-    local player = plr
-    return plr and player
+    return plr
 end
 
 function GetChr()
-    local chr = plr.Character or plr.CharacterAdded:Wait()
-    local character = chr
+    local chr = game:GetService("Players").LocalPlayer.Character or ame:GetService("Players").LocalPlayer.CharacterAdded:Wait()
 
-    return chr and character
+    return chr
 end
 
 function GetHrp()
     local Correct, Error = pcall(function()
-        hrp = chr.HumanoidRootPart or chr:WaitForChild("HumanoidRootPart")
-        humanoidrootpart = hrp
+        hrp = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart or game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart")
     end)
     
     if Error then
-        while not chr:FindFirstChild("HumanoidRootPart") do task.wait(0.5) end
-        hrp = chr:FindFirstChild("HumanoidRootPart")
-        humanoidrootpart = hrp
+        while not game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart") do task.wait(0.5) end
+        hrp = game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
     end
 
-    return hrp and humanoidrootpart
+    return hrp
 end
 
 function GetHm()
     local Correct2, Error2 = pcall(function()
-        hm = chr.Humanoid or chr:WaitForChild("Humanoid")
-        humanoid = hm
+        hm = game:GetService("Players").LocalPlayer.Character.Humanoid or game:GetService("Players").LocalPlayer.Character:WaitForChild("Humanoid")
     end)
-    
-    if Error2 then
-        while not chr:FindFirstChild("Humanoid") do task.wait(0.5) end
-        hm = chr.Humanoid or chr:WaitForChild("Humanoid")
-        humanoid = hm
-    end
-end
 
-GetPlayer()
-GetChr()
-GetHrp()
-GetHm()
+    if Error2 then
+        while not game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid") do task.wait(0.5) end
+        hm = game:GetService("Players").LocalPlayer.Character.Humanoid or chr:WaitForChild("Humanoid")
+    end
+
+    return hm
+end
