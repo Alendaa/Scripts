@@ -122,4 +122,4 @@ local whiteList = {
 }
 
 
-return whiteList and print(typeof(whiteList))
+return print(typeof(whiteList))
