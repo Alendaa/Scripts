@@ -4,7 +4,7 @@ function GetPlayer()
 end
 
 function GetChr()
-    local chr = game:GetService("Players").LocalPlayer.Character or ame:GetService("Players").LocalPlayer.CharacterAdded:Wait()
+    local chr = game:GetService("Players").LocalPlayer.Character or game:GetService("Players").LocalPlayer.CharacterAdded:Wait()
 
     return chr
 end
