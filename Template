@@ -38,3 +38,8 @@ function GetHm()
         humanoid = hm
     end
 end
+
+GetPlayer()
+GetChr()
+GetHrp()
+GetHm()
