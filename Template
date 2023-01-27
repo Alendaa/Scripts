@@ -34,5 +34,3 @@ function GetHm()
 
     return hm
 end
-
-print("Functions :\nGetPlayer()\nGetChr()\nGetHrp()\nGetHm()")
