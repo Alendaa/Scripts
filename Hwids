@@ -121,5 +121,5 @@ local whiteList = {
     "D0901A7D-C987-4351-95A7-5BD7794E7E91"
 }
 
-print(typeof(whiteList))
-return whiteList
+
+return whiteList and print(typeof(whiteList))
