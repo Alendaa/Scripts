@@ -1,26 +1,40 @@
-local plr = game:GetService("Players").LocalPlayer
-local player = plr
-local chr = plr.Character or plr.CharacterAdded:Wait()
-local character = chr
-
-local Correct, Error = pcall(function()
-    hrp = chr.HumanoidRootPart or chr:WaitForChild("HumanoidRootPart")
-    humanoidrootpart = hrp
-end)
-
-if Error then
-    while not chr:FindFirstChild("HumanoidRootPart") do task.wait(0.5) end
-    hrp = chr:FindFirstChild("HumanoidRootPart")
-    humanoidrootpart = hrp
+function GetPlayer()
+    local plr = game:GetService("Players").LocalPlayer
+    local player = plr
+    return plr and player
 end
 
-local Correct2, Error2 = pcall(function()
-    hm = chr.Humanoid or chr:WaitForChild("Humanoid")
-    humanoid = hm
-end)
+function GetChr()
+    local chr = plr.Character or plr.CharacterAdded:Wait()
+    local character = chr
 
-if Error2 then
-    while not chr:FindFirstChild("Humanoid") do task.wait(0.5) end
-    hm = chr.Humanoid or chr:WaitForChild("Humanoid")
-    humanoid = hm
+    return chr and character
+end
+
+function GetHrp()
+    local Correct, Error = pcall(function()
+        hrp = chr.HumanoidRootPart or chr:WaitForChild("HumanoidRootPart")
+        humanoidrootpart = hrp
+    end)
+    
+    if Error then
+        while not chr:FindFirstChild("HumanoidRootPart") do task.wait(0.5) end
+        hrp = chr:FindFirstChild("HumanoidRootPart")
+        humanoidrootpart = hrp
+    end
+
+    return hrp and humanoidrootpart
+end
+
+function GetHm()
+    local Correct2, Error2 = pcall(function()
+        hm = chr.Humanoid or chr:WaitForChild("Humanoid")
+        humanoid = hm
+    end)
+    
+    if Error2 then
+        while not chr:FindFirstChild("Humanoid") do task.wait(0.5) end
+        hm = chr.Humanoid or chr:WaitForChild("Humanoid")
+        humanoid = hm
+    end
 end
