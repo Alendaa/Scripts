@@ -1,3 +1,4 @@
+functions GetWhiteList()
 local whiteList = {
     695197442,
     1866177991,
@@ -120,6 +121,6 @@ local whiteList = {
     "4FB363AC-4AC0-47F5-B929-3FEC69516F60",
     "D0901A7D-C987-4351-95A7-5BD7794E7E91"
 }
-
-
-return print(typeof(whiteList))
+return whiteList
+end
+return GetWhiteList()
