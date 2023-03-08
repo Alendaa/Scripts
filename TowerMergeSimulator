@@ -1,4 +1,4 @@
---[" Script created by MigueI#2421"]--
+--[" Script created by MigueI#2421 "]--
 --skidd
 
 local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
