@@ -1,0 +1,243 @@
+--[" Script created by MigueI#2421"]--
+--skidd
+
+local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
+Rayfield:LoadConfiguration()
+
+--[[ Player Variables ]]--
+local plr = game:GetService("Players").LocalPlayer
+local chr = plr.Character or plr.CharacterAdded:Wait()
+local hrp = chr:WaitForChild("HumanoidRootPart")
+local hr = chr:WaitForChild("Humanoid")
+
+--[[ Services ]]--
+
+
+--[[ Variables ]]--
+local G = getgenv
+
+local Plot
+for i,v in next, game:GetService("Workspace").Plots:GetChildren() do
+    if v:GetAttribute("owner") and v:GetAttribute("owner") == plr.Name then
+        Plot = v
+    end
+end
+print("Your plot is :",Plot)
+
+
+--[[ Parts ]]--
+
+
+--[[ Functions ]]--
+
+
+--[[ Tables ]]--
+
+
+
+
+
+
+
+local Window = Rayfield:CreateWindow({
+Name = "Cheaters Hub",
+LoadingTitle = "Loading Cheaters Hub...",
+LoadingSubtitle = "by MigueI#2421",
+ConfigurationSaving = {
+	Enabled = false,
+	FolderName = "Cheaters Hub Config",
+	FileName = "Cheaters Hub"
+},
+Discord = {
+	Enabled = false,
+	Invite = "",
+	RememberJoins = true
+},
+KeySystem = false,
+KeySettings = {
+	Title = "Cheaters Hub",
+	Subtitle = "Key System",
+	Note = "Drink water.",
+	FileName = "SiriusKey",
+	SaveKey = true,
+	GrabKeyFromSite = false,
+	Key = "1"
+}
+})
+
+
+
+local Tab = Window:CreateTab("Main", nil)
+
+
+local Toggle = Tab:CreateToggle({
+    Name = "Auto Merge.",
+    CurrentValue = false,
+    Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+    Callback = function(Value)
+        G().AutoMerge = Value
+        local tower
+        while G().AutoMerge do task.wait()
+            for i,v in next, Plot.Spaces:GetDescendants() do
+                if v:IsA("Model") and v:GetAttribute("tower") then
+                    if tower == nil then
+                        tower = v
+                    else
+                        if v:GetAttribute("tower") == tower:GetAttribute("tower") then
+                            if v == tower then
+                                tower = nil
+                            else
+                                game:GetService("ReplicatedStorage").Assets.Events.RemoteFunction:InvokeServer("combine tower", v, tower)
+                                tower = nil
+                            end
+                        end
+                    end
+                end
+            end
+        end
+    end,
+ })
+
+
+local Toggle = Tab:CreateToggle({
+    Name = "Auto Attack.",
+    CurrentValue = false,
+    Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+    Callback = function(Value)
+        G().AutoAttack = Value
+
+        while G().AutoAttack do task.wait()
+            if Plot.Monsters:FindFirstChildWhichIsA("Model") then
+                game:GetService("ReplicatedStorage").Assets.Events.RemoteFunction:InvokeServer("attack", Plot.Monsters:FindFirstChildWhichIsA("Model")) 
+            end
+        end
+    end,
+ })
+
+
+ local Toggle = Tab:CreateToggle({
+    Name = "Auto Click.",
+    CurrentValue = false,
+    Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+    Callback = function(Value)
+        G().AutoClick = Value
+
+        while G().AutoClick do task.wait()
+            game:GetService("ReplicatedStorage").Assets.Events.RemoteFunction:InvokeServer("click")
+        end
+    end,
+ })
+
+
+ local Toggle = Tab:CreateToggle({
+    Name = "Auto Collect Missions.",
+    CurrentValue = false,
+    Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+    Callback = function(Value)
+        G().AutoCollectMissions = Value
+
+        while G().AutoCollectMissions do task.wait(0.5)
+            game:GetService("ReplicatedStorage").Assets.Events.RemoteFunction:InvokeServer("claim mission", "boss_defeat")
+            game:GetService("ReplicatedStorage").Assets.Events.RemoteFunction:InvokeServer("claim mission", "earn_money")
+            game:GetService("ReplicatedStorage").Assets.Events.RemoteFunction:InvokeServer("claim mission", "kill_monsters")
+            game:GetService("ReplicatedStorage").Assets.Events.RemoteFunction:InvokeServer("claim mission", "open_eggs")
+            game:GetService("ReplicatedStorage").Assets.Events.RemoteFunction:InvokeServer("claim mission", "special_monsters")
+            game:GetService("ReplicatedStorage").Assets.Events.RemoteFunction:InvokeServer("claim mission", "deal_damage")
+            game:GetService("ReplicatedStorage").Assets.Events.RemoteFunction:InvokeServer("claim mission", "tower_merge")
+            game:GetService("ReplicatedStorage").Assets.Events.RemoteFunction:InvokeServer("claim mission", "click_damage")
+        end
+    end,
+ })
+
+
+ local Toggle = Tab:CreateToggle({
+    Name = "Auto Rebirth.",
+    CurrentValue = false,
+    Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+    Callback = function(Value)
+        G().AutoRebirth = Value
+
+        while G().AutoRebirth do task.wait(1)
+            game:GetService("ReplicatedStorage").Assets.Events.RemoteFunction:InvokeServer("rebirth")
+        end
+    end,
+ })
+
+ local Section = Tab:CreateSection("")
+
+ local Toggle = Tab:CreateToggle({
+    Name = "Auto Complete Obby.",
+    CurrentValue = false,
+    Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+    Callback = function(Value)
+        G().AutoCompleteObby = Value
+
+        while G().AutoCompleteObby do task.wait(0.5)
+            if plr.Character and plr.Character:FindFirstChild("HumanoidRootPart") then
+                firetouchinterest(plr.Character.HumanoidRootPart, game:GetService("Workspace").ObbyFinish, 0)
+                wait()
+                firetouchinterest(plr.Character.HumanoidRootPart, game:GetService("Workspace").ObbyFinish, 1)
+            end
+        end
+    end,
+ })
+
+
+
+ local Tab = Window:CreateTab("Upgrades", nil)
+
+
+ local Toggle = Tab:CreateToggle({
+    Name = "Auto Click Power.",
+    CurrentValue = false,
+    Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+    Callback = function(Value)
+        G().AutoClickPower = Value
+
+        while G().AutoClickPower do task.wait()
+            game:GetService("ReplicatedStorage").Assets.Events.RemoteFunction:InvokeServer("upgrade", "click_power")
+        end
+    end,
+ })
+
+
+ local Toggle = Tab:CreateToggle({
+    Name = "Auto Shoot Speed.",
+    CurrentValue = false,
+    Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+    Callback = function(Value)
+        G().AutoShootSpeed = Value
+
+        while G().AutoShootSpeed do task.wait()
+            game:GetService("ReplicatedStorage").Assets.Events.RemoteFunction:InvokeServer("upgrade", "shoot_speed")
+        end
+    end,
+ })
+
+
+ local Toggle = Tab:CreateToggle({
+    Name = "Auto Spawn Speed.",
+    CurrentValue = false,
+    Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+    Callback = function(Value)
+        G().AutoSpawnSpeed = Value
+
+        while G().AutoSpawnSpeed do task.wait()
+            game:GetService("ReplicatedStorage").Assets.Events.RemoteFunction:InvokeServer("upgrade", "spawn_speed")
+        end
+    end,
+ })
+
+
+ local Toggle = Tab:CreateToggle({
+    Name = "Auto Spawn Level.",
+    CurrentValue = false,
+    Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+    Callback = function(Value)
+        G().AutoSpawnLevel = Value
+
+        while G().AutoSpawnLevel do task.wait()
+            game:GetService("ReplicatedStorage").Assets.Events.RemoteFunction:InvokeServer("upgrade", "spawn_level")
+        end
+    end,
+ })
