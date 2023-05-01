@@ -1,0 +1,104 @@
+local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
+Rayfield:LoadConfiguration()
+
+--[[ Player Variables ]]--
+local plr = game:GetService("Players").LocalPlayer
+local Workspace = game:GetService("Workspace")
+local chr = plr.Character or plr.CharacterAdded:Wait()
+local hrp = chr:WaitForChild("HumanoidRootPart")
+local hr = chr:WaitForChild("Humanoid")
+
+--[[ Services ]]--
+
+
+--[[ Variables ]]--
+local G = getgenv
+
+local AutoCollectFood
+
+
+--[[ Parts ]]--
+
+
+--[[ Functions ]]--
+
+
+--[[ Tables ]]--
+
+
+
+
+
+
+
+local Window = Rayfield:CreateWindow({
+Name = "Cheaters Hub",
+LoadingTitle = "Loading Cheaters Hub...",
+LoadingSubtitle = "by MigueI#2421",
+ConfigurationSaving = {
+	Enabled = false,
+	FolderName = "Cheaters Hub Config",
+	FileName = "Cheaters Hub"
+},
+Discord = {
+	Enabled = false,
+	Invite = "",
+	RememberJoins = true
+},
+KeySystem = false,
+KeySettings = {
+	Title = "Cheaters Hub",
+	Subtitle = "Key System",
+	Note = "Drink water.",
+	FileName = "SiriusKey",
+	SaveKey = true,
+	GrabKeyFromSite = false,
+	Key = "1"
+}
+})
+
+
+
+local Tab = Window:CreateTab("Main", nil)
+
+
+local Toggle = Tab:CreateToggle({
+    Name = "Auto Attack.",
+    CurrentValue = false,
+    Flag = "Toggle1",
+    Callback = function(Value)
+        G().AutoAttack = Value
+
+        while G().AutoAttack do task.wait(0.5)
+            game:GetService("ReplicatedStorage").Events.AttackEvent:FireServer()
+        end
+    end,
+})
+
+
+local Toggle = Tab:CreateToggle({
+    Name = "Auto Collect Food.",
+    CurrentValue = false,
+    Flag = "Toggle1",
+    Callback = function(Value)
+        local LastCFrame
+
+        if Value then
+            AutoCollectFood = game:GetService("Workspace").ChildAdded:Connect(function(c)
+                if string.find(string.lower(c.Name), "meat") then
+                    if plr.Character and plr.Character:FindFirstChild("HumanoidRootPart") then
+                        c.CFrame = plr.Character.HumanoidRootPart.CFrame
+                    end
+                end
+            end)
+        else
+            AutoCollectFood:Disconnect()
+        end
+        if LastCFrame ~= nil then
+            if plr.Character and plr.Character:FindFirstChild("HumanoidRootPart") then
+                plr.Character.HumanoidRootPart.CFrame = LastCFrame
+                LastCFrame = nil
+            end
+        end
+    end,
+})
