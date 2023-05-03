@@ -1,0 +1,117 @@
+local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
+Rayfield:LoadConfiguration()
+
+--[[ Player Variables ]]--
+local plr = game:GetService("Players").LocalPlayer
+local chr = plr.Character or plr.CharacterAdded:Wait()
+local hrp = chr:WaitForChild("HumanoidRootPart")
+local hr = chr:WaitForChild("Humanoid")
+
+--[[ Services ]]--
+
+
+--[[ Variables ]]--
+local G = getgenv
+
+
+--[[ Parts ]]--
+
+
+--[[ Functions ]]--
+
+
+--[[ Tables ]]--
+
+
+
+
+
+
+
+local Window = Rayfield:CreateWindow({
+Name = "Cheaters Hub",
+LoadingTitle = "Loading Cheaters Hub...",
+LoadingSubtitle = "by MigueI#2421",
+ConfigurationSaving = {
+	Enabled = false,
+	FolderName = "Cheaters Hub Config",
+	FileName = "Cheaters Hub"
+},
+Discord = {
+	Enabled = false,
+	Invite = "",
+	RememberJoins = true
+},
+KeySystem = false,
+KeySettings = {
+	Title = "Cheaters Hub",
+	Subtitle = "Key System",
+	Note = "Drink water.",
+	FileName = "SiriusKey",
+	SaveKey = true,
+	GrabKeyFromSite = false,
+	Key = "1"
+}
+})
+
+
+
+local Main = Window:CreateTab("Main", nil)
+
+
+local Plane = Main:CreateDropdown({
+    Name = "Plane.",
+    Options = {"Mustache T6", "Mustache V2", "Mustache V3", "Horizon TT5", "Horizon Skyview", "Mustache Le8", "Mustache Le-98", "Horizon Hour", "Glider R-7", "Glider Shadow", "Glider Booster T8", "Glider Hurricane", "Arbus 310", "Glider Blade VM", "Arbus 320", "Private Jet H2", "Mustache Bomber", 
+"Arbus 360", "Arbus 380", "Cargo Plane", "Glider Torpedo", "Glider Torpedo V2", "Glider Shadow Bomber", "Fighter Jet"},
+    CurrentOption = {"None"},
+    MultipleOptions = false,
+    Flag = "Dropdown1",
+    Callback = function(Option)
+    end,
+})
+
+
+local Button = Main:CreateButton({
+    Name = "Spawn Plane.",
+    Callback = function()
+        game:GetService("ReplicatedStorage").SpawnCar:FireServer(Plane.CurrentOption[1])
+    end,
+})
+
+
+local ExclusivePlane = Main:CreateDropdown({
+    Name = "Exclusive Plane.",
+    Options = {"Private Jet Ultra", "B-2", "Tactical Jet"},
+    CurrentOption = {"None"},
+    MultipleOptions = false,
+    Flag = "Dropdown1",
+    Callback = function(Option)
+    end,
+})
+
+
+local Button = Main:CreateButton({
+    Name = "Spawn Exclusive Plane.",
+    Callback = function()
+        game:GetService("ReplicatedStorage").SpawnCar:FireServer(ExclusivePlane.CurrentOption[1])
+    end,
+})
+
+
+local Other = Main:CreateDropdown({
+    Name = "Other.",
+    Options = {"Helicopter", "Apache helicopter", "Truck", "Blimp"},
+    CurrentOption = {"None"},
+    MultipleOptions = false,
+    Flag = "Dropdown1",
+    Callback = function(Option)
+    end,
+})
+
+
+local SpawnOther = Main:CreateButton({
+    Name = "Spawn Other.",
+    Callback = function()
+        game:GetService("ReplicatedStorage").SpawnCar:FireServer(Other.CurrentOption[1])
+    end,
+})
