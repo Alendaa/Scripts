@@ -1,6 +1,7 @@
 local GuiService = game:GetService("GuiService")
 local NotificationSystem = {}
 
+local ScreenGui = Instance.new("ScreenGui")
 local Notification = Instance.new("Frame")
 local UIGridLayout = Instance.new("UIGridLayout")
 local Content = Instance.new("Frame")
@@ -16,7 +17,10 @@ local UIAspectRatioConstraint_4 = Instance.new("UIAspectRatioConstraint")
 local UIAspectRatioConstraint_5 = Instance.new("UIAspectRatioConstraint")
 
 
+ScreenGui.ResetOnSpawn = false
+
 Notification.Name = "Notification"
+Notification.Parent = ScreenGui
 Notification.AnchorPoint = Vector2.new(0.5, 0.5)
 Notification.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Notification.BackgroundTransparency = 1.000
@@ -117,29 +121,29 @@ NotificationSystem.Notify = function(Table)
 
         if typeof(Table[1]) == "string" or Table[1] == nil then
             if Table[1] == nil then Table[1] = "" end
-            local GUI = Notification:Clone()
-            GUI.Content.Title.Text = Table[1]
+            local GUI = ScreenGui:Clone()
+            GUI.Notification.Content.Title.Text = Table[1]
             if typeof(Table[2]) == "string" or Table[2] == nil then
                 if Table[2] == nil then Table[2] = "" end
-                GUI.Content.Text = Table[2]
+                GUI.Notification.Content.Text = Table[2]
 
                 if typeof(Table[3]) == "number" or Table[3] == nil then
                     if Table[3] == nil then
-                        GUI.Content.Image = ""
+                        GUI.Notification.Content.Image = ""
                     else
-                        GUI.Content.Image = "rbxassetid://"..Table[3]
+                        GUI.Notification.Content.Image = "rbxassetid://"..Table[3]
                     end
 
                     if typeof(Table[4]) == "number" then
                         if typeof(Table[5]) == "boolean" then
                             GUI.Parent = game:GetService("CoreGui")
                             if Table[5] then
-                                GUI.Content.LayoutOrder = LayourOrderCheck(GUI.Content)
+                                GUI.Notification.Content.LayoutOrder = LayourOrderCheck(GUI.Content)
                             end
                         else
                             return warn(Table[2].." its a "..typeof(Table[2])..", not a boolean.")
                         end
-                        
+
                         task.wait(Table[4])
                         GUI:Destroy()
                     else
