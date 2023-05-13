@@ -159,12 +159,4 @@ NotificationSystem.Notify = function(Table)
     end
 end
 
-NotificationSystem.Notify({
-    Title = "Test",
-    Content = "",
-    ImageId = 0, --Nil to remove image
-    Time = 1.5, --Time for notification to be deleted
-    Important = false --If true, the notification will stay at the bottom
-})
-
 return NotificationSystem
