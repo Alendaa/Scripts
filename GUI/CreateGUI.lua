@@ -105,6 +105,7 @@ function T.CreateContent()
 
   UIAspectRatioConstraint_5.Parent = Notification
   UIAspectRatioConstraint_5.AspectRatio = 0.392
+  return Content
 end
 
 return T
