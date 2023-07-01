@@ -32,7 +32,7 @@ UIGridLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
 UIGridLayout.VerticalAlignment = Enum.VerticalAlignment.Bottom
 UIGridLayout.CellSize = UDim2.new(0, 250, 0, 125)
 
-return function CreateContent()
+return function()
   Content.Name = "Content"
   Content.Parent = Notification
   Content.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
