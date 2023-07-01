@@ -1,14 +1,14 @@
 local NotificationSystem = {}
-local GUI
-local CreateContent
+local GUIFunctions = loadstring(game:HttpGet("https://raw.githubusercontent.com/Alendaa/Scripts/main/GUI/CreateGUI.lua",true))();
+
+
 if not game:GetService("CoreGui"):FindFirstChild("NotificationSystem") then
-    CreateContent = loadstring(game:HttpGet("https://raw.githubusercontent.com/Alendaa/Scripts/main/GUI/CreateGUI.lua",true))();
+    GUIFunctions.CreateGUI()
 end
-GUI = game:GetService("CoreGui").NotificationSystem
 
 function NotificationSystem:Notify(Config)
     if type(Config) == "table" then
-        local Content = CreateContent()
+        local Content = GUIFunctions:CreateContent()
         if Config["Title"] ~= nil and type(Config["Title"]) == "string" then
             Content.Title.Text = Config["Title"]
         else
