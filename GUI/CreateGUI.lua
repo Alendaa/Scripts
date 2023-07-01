@@ -38,7 +38,7 @@ end
 
 function T.CreateContent()
   Content.Name = "Content"
-  Content.Parent = Notification
+  Content.Parent = game:GetService("CoreGui"):WaitForChild("NotificationSystem").Notification
   Content.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
   Content.LayoutOrder = 1
   Content.Position = UDim2.new(-0.0218340605, 0, 0.0428082198, 0)
@@ -105,6 +105,7 @@ function T.CreateContent()
 
   UIAspectRatioConstraint_5.Parent = Notification
   UIAspectRatioConstraint_5.AspectRatio = 0.392
+  print("Content Created")
   return Content
 end
 
